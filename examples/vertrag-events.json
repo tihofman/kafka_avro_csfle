@@ -1,0 +1,35 @@
+[
+  {
+    "vertragId": "VA-2024-100532",
+    "beraterId": "B-4471",
+    "produktTyp": "BERUFSUNFAEHIGKEIT",
+    "abschlussDatum": "2024-05-14",
+    "status": "AKTIV",
+    "kundenIban": "DE89370400440532013000",
+    "geburtsdatum": "1987-03-22",
+    "einkommen": "3850.00",
+    "gesundheitsangaben": "Keine Vorerkrankungen, Nichtraucher"
+  },
+  {
+    "vertragId": "VA-2024-100777",
+    "beraterId": "B-2290",
+    "produktTyp": "ALTERSVORSORGE",
+    "abschlussDatum": "2024-06-02",
+    "status": "EINGEREICHT",
+    "kundenIban": "DE02500105170137075030",
+    "geburtsdatum": "1979-11-05",
+    "einkommen": "4200.00",
+    "gesundheitsangaben": null
+  },
+  {
+    "vertragId": "VA-2024-101204",
+    "beraterId": "B-4471",
+    "produktTyp": "BAUSPARVERTRAG",
+    "abschlussDatum": "2024-07-19",
+    "status": "ENTWURF",
+    "kundenIban": "DE27100777770209299700",
+    "geburtsdatum": "1995-01-30",
+    "einkommen": "2650.00",
+    "gesundheitsangaben": null
+  }
+]

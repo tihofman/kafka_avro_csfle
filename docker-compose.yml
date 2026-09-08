@@ -1,0 +1,27 @@
+# Lokales Demo-Setup fuer den Vortrag "Kafka ohne Klartext".
+#
+# Kafka Broker + Schema Registry laufen NICHT mehr lokal, sondern in Confluent Cloud
+# (Stream Governance Advanced Package, benoetigt fuer CSFLE). Grund: Lokales CSFLE auf
+# Confluent Platform braucht eine Enterprise-Lizenz inkl. CSFLE-Add-on, die nicht per
+# Self-Service erhaeltlich ist. Confluent Cloud bietet CSFLE hingegen direkt gegen
+# Verbrauch des kostenlosen $400-Trial-Guthabens (siehe spec.md).
+#
+# Lokal bleibt nur HashiCorp Vault (Dev-Mode, Transit Engine) als KMS, da die
+# Verschluesselung/Entschluesselung clientseitig (im Kotlin-Producer/Consumer) passiert
+# und Vault von dort aus erreichbar sein muss - nicht vom Kafka-Broker selbst.
+#
+# Vault starten: docker compose up -d vault
+# Danach Transit Engine + Key einrichten: ./scripts/setup-vault.sh
+
+services:
+  vault:
+    image: vault:1.13.3
+    hostname: vault
+    container_name: vault
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: "root-token"
+      VAULT_DEV_LISTEN_ADDRESS: "0.0.0.0:8200"
+    cap_add:
+      - IPC_LOCK

@@ -1,0 +1,63 @@
+{
+  "type": "record",
+  "name": "VertragsAbschlussEvent",
+  "namespace": "de.dvag.demo.vertrag",
+  "doc": "Event, das beim Abschluss eines Vorsorge-/Versicherungsvertrags durch einen Berater erzeugt wird. Alle Felder sind bewusst vom Typ string modelliert, da CSFLE nur string/bytes verschluesseln kann - so lassen sich fuer die Demo sowohl 'ganze Nachricht' (Tag ALL) als auch einzelne Felder (Tags PII/PCI/HEALTH) verschluesseln.",
+  "fields": [
+    {
+      "name": "vertragId",
+      "type": "string",
+      "doc": "Eindeutige Vertragsnummer",
+      "confluent:tags": ["ALL"]
+    },
+    {
+      "name": "beraterId",
+      "type": "string",
+      "doc": "Kuerzel/ID des abschliessenden Beraters",
+      "confluent:tags": ["ALL"]
+    },
+    {
+      "name": "produktTyp",
+      "type": "string",
+      "doc": "z. B. ALTERSVORSORGE, BERUFSUNFAEHIGKEIT, BAUSPARVERTRAG",
+      "confluent:tags": ["ALL"]
+    },
+    {
+      "name": "abschlussDatum",
+      "type": "string",
+      "doc": "ISO-8601 Datum, z. B. 2024-05-01",
+      "confluent:tags": ["ALL"]
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "doc": "z. B. ENTWURF, EINGEREICHT, AKTIV, ABGELEHNT",
+      "confluent:tags": ["ALL"]
+    },
+    {
+      "name": "kundenIban",
+      "type": "string",
+      "doc": "IBAN des Kunden fuer die Provisions-/Beitragsabrechnung",
+      "confluent:tags": ["ALL", "PCI"]
+    },
+    {
+      "name": "geburtsdatum",
+      "type": "string",
+      "doc": "Geburtsdatum des Kunden (ISO-8601)",
+      "confluent:tags": ["ALL", "PII"]
+    },
+    {
+      "name": "einkommen",
+      "type": "string",
+      "doc": "Monatliches Nettoeinkommen des Kunden als String, z. B. '4200.00'",
+      "confluent:tags": ["ALL", "PII"]
+    },
+    {
+      "name": "gesundheitsangaben",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Nur bei Berufsunfaehigkeitsversicherung befuellt, z. B. Vorerkrankungen",
+      "confluent:tags": ["ALL", "PII", "HEALTH"]
+    }
+  ]
+}

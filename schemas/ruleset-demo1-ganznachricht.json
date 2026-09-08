@@ -1,0 +1,21 @@
+{
+  "_kommentar": "Demo 1 (Kapitel 5): Ganznachricht-Verschluesselung. Verschluesselt alle Felder, die den Tag ALL tragen - im Ergebnis ist der komplette Record chiffriert.",
+  "ruleSet": {
+    "domainRules": [
+      {
+        "name": "encryptFullMessage",
+        "kind": "TRANSFORM",
+        "type": "ENCRYPT",
+        "mode": "WRITEREAD",
+        "tags": ["ALL"],
+        "params": {
+          "encrypt.kek.name": "vertrag-demo-kek",
+          "encrypt.kms.key.id": "http://127.0.0.1:8200/transit/keys/csfle-demo",
+          "encrypt.kms.type": "hcvault",
+          "encrypt.dek.algorithm": "AES256_GCM"
+        },
+        "onFailure": "ERROR,NONE"
+      }
+    ]
+  }
+}

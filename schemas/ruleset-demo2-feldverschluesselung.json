@@ -1,0 +1,21 @@
+{
+  "_kommentar": "Demo 2 (Kapitel 7): Feldverschluesselung. Verschluesselt nur Felder mit den Tags PII, PCI oder HEALTH - kundenIban, geburtsdatum, einkommen, gesundheitsangaben. Alle anderen Felder (vertragId, beraterId, produktTyp, abschlussDatum, status) bleiben im Klartext.",
+  "ruleSet": {
+    "domainRules": [
+      {
+        "name": "encryptSensitiveFields",
+        "kind": "TRANSFORM",
+        "type": "ENCRYPT",
+        "mode": "WRITEREAD",
+        "tags": ["PII", "PCI", "HEALTH"],
+        "params": {
+          "encrypt.kek.name": "vertrag-demo-kek",
+          "encrypt.kms.key.id": "http://127.0.0.1:8200/transit/keys/csfle-demo",
+          "encrypt.kms.type": "hcvault",
+          "encrypt.dek.algorithm": "AES256_GCM"
+        },
+        "onFailure": "ERROR,NONE"
+      }
+    ]
+  }
+}
